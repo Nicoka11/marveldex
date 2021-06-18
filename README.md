@@ -1,5 +1,7 @@
 # marveldex-nuxt
 
+My take on creating a web-app about the Marvel Api
+
 ## Build Setup
 
 ```bash

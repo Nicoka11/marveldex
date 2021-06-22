@@ -1,4 +1,4 @@
-el<template>
+<template>
   <div class="page-wrapper">
     <header>
       <div class="search-bar">

@@ -6,11 +6,16 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Vuex from 'vuex'
 
+Vue.use(Vuex)
 export default Vue.extend({})
 </script>
 
 <style>
+.body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
 .container {
   margin: 0 auto;
   min-height: 100vh;

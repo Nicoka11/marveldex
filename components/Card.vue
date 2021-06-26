@@ -1,15 +1,34 @@
 <template>
-  <div class="card">
+  <div :key="id" class="card" :class="type">
     <figure>
       <div class="image-wrapper">
         <img src="../assets/vignette-portrait-flash.jpg" alt="" />
       </div>
-      <p class="card-title">the flash</p>
+      <p class="card-title">{{ title }}</p>
     </figure>
   </div>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+export default {
+  props: {
+    title: {
+      type: String,
+      default: '',
+      required: true,
+    },
+    // type: {
+    //   type: String,
+    //   default: '',
+    //   required: true,
+    // },
+    // image: {
+    //   type: String,
+    //   default: '',
+    // },
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 .card {
@@ -19,6 +38,25 @@
   background: #202020;
   overflow: hidden;
   border-bottom: 0.8rem solid white;
+
+  &-character {
+    border-color: #3bffd0;
+  }
+  &-comics {
+    border-color: #fbff3b;
+  }
+  &-creator {
+    border-color: #b53bff;
+  }
+  &-events {
+    border-color: #573bff;
+  }
+  &-series {
+    border-color: #ff5151;
+  }
+  &-stories {
+    border-color: #ff8126;
+  }
 }
 .image-wrapper {
   height: 14rem;

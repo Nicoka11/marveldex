@@ -3,7 +3,13 @@
     <Navbar></Navbar>
     <Sorting></Sorting>
     <div class="grid-list">
-      <Card v-for="item in marvelData" :key="item.id" :title="item.name"></Card>
+      <Card
+        v-for="item in marvelData"
+        :key="item.id"
+        :title="item.name"
+        :image-path="item.thumbnail.path"
+        :image-extension="item.thumbnail.extension"
+      ></Card>
     </div>
   </div>
 </template>
@@ -23,7 +29,6 @@ export default Vue.extend({
     const apiHash = md5(`${ts}${apiKeyPrivate}${apiKeyPublic}`)
     const api = `http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
     const marvelData = await axios.get(api).then((response) => {
-      console.log(response.data.data.results)
       return response.data.data.results
     })
     return {
@@ -51,6 +56,9 @@ export default Vue.extend({
 .grid-list {
   height: 100%;
   display: grid;
+  grid-template-columns: repeat(6, auto);
+  column-gap: 15px;
+  row-gap: 15px;
 }
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,

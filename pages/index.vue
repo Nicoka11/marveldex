@@ -1,6 +1,10 @@
 <template>
   <div class="container">
     <Navbar></Navbar>
+    <Sorting></Sorting>
+    <div class="grid-list">
+      <Card></Card>
+    </div>
   </div>
 </template>
 
@@ -9,7 +13,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return {}
+  },
+})
 </script>
 
 <style>
@@ -20,9 +28,14 @@ export default Vue.extend({})
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   background-color: #191919;
+  padding: 1.5rem;
 }
-
+.grid-list {
+  height: 100%;
+  display: grid;
+}
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

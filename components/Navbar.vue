@@ -1,43 +1,37 @@
 <template>
-  <div class="page-wrapper">
-    <header>
-      <div class="search-bar">
-        <img
-          src="../assets/marveldex-logo.svg"
-          height="100%"
-          class="marveldex-logo"
+  <header>
+    <div class="search-bar">
+      <img
+        src="../assets/marveldex-logo.svg"
+        height="100%"
+        class="marveldex-logo"
+      />
+      <form id="search-form" action="post">
+        <input
+          id="search-input"
+          type="text"
+          name="search-input"
+          placeholder="Search in the marvel history"
         />
-        <form id="search-form" action="post">
-          <input
-            id="search-input"
-            type="text"
-            name="search-input"
-            placeholder="Search in the marvel history"
-          />
-          <button id="search-submit">
-            <img src="../assets/header/magnify-search.svg" height="70%" />
-          </button>
-        </form>
-        <FilterSearch></FilterSearch>
-      </div>
-      <a id="marvel-btn" href="https://www.marvel.com/">marvel</a>
-    </header>
-    <p>Search results for {{ searchQuery }}</p>
-  </div>
+        <button id="search-submit">
+          <img src="../assets/header/magnify-search.svg" height="70%" />
+        </button>
+      </form>
+      <FilterSearch></FilterSearch>
+    </div>
+    <a id="marvel-btn" href="https://www.marvel.com/">marvel</a>
+  </header>
 </template>
 
 <script lang="ts"></script>
 
 <style lang="scss" scoped>
-.page-wrapper {
-  padding: 1.5rem;
-}
-
 header {
   display: flex;
   justify-content: space-between;
-  width: 95vw;
+  width: 100%;
   height: 3rem;
+  margin-bottom: 4rem;
 }
 
 .marveldex-logo {

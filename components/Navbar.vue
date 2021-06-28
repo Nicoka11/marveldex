@@ -9,6 +9,7 @@
       <form id="search-form" action="post">
         <input
           id="search-input"
+          v-model="searchBar"
           type="text"
           name="search-input"
           placeholder="Search in the marvel history"
@@ -19,13 +20,29 @@
       </form>
       <FilterSearch></FilterSearch>
     </div>
-    <a id="marvel-btn" href="https://www.marvel.com/">marvel</a>
+    <p>{{ searchBar }}</p>
+    <a id="marvel-btn" href="https://www.marvel.com/"
+      >Check out the last news from Marvel !</a
+    >
   </header>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  data() {
+    return {
+      searchBar: '',
+    }
+  },
+})
+</script>
 
 <style lang="scss" scoped>
+p {
+  color: #fff;
+}
 header {
   display: flex;
   justify-content: space-between;

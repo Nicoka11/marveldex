@@ -9,18 +9,18 @@
       <form id="search-form" action="post">
         <input
           id="search-input"
-          v-model="searchBar"
+          :value="searchInput"
           type="text"
           name="search-input"
           placeholder="Search in the marvel history"
+          @input="updateSearch"
         />
-        <button id="search-submit">
+        <button id="search-submit" @click="searchSubmit">
           <img src="../assets/header/magnify-search.svg" height="70%" />
         </button>
       </form>
       <FilterSearch></FilterSearch>
     </div>
-    <p>{{ searchBar }}</p>
     <a id="marvel-btn" href="https://www.marvel.com/"
       >Check out the last news from Marvel !</a
     >
@@ -29,12 +29,24 @@
 
 <script lang="ts">
 import Vue from 'vue'
+// import { mapMutations } from 'vuex'
 
 export default Vue.extend({
-  data() {
-    return {
-      searchBar: '',
-    }
+  name: 'Navbar',
+  computed: {
+    searchInput() {
+      return this.$store.state.navBar
+    },
+  },
+  methods: {
+    updateSearch(e: any) {
+      this.$store.commit('search/setSearch', e.target.value)
+    },
+    searchSubmit(e: any) {
+      e.preventDefault()
+      const data = this.$store.commit('search/asyncData')
+      this.$store.commit('search/setFetchedData', data)
+    },
   },
 })
 </script>

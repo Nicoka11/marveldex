@@ -1,11 +1,9 @@
 export const state = () => ({
-  navBar: {
-    searchBar: 'This is america',
-  },
+  theme: 'dark',
 })
 
 export const mutations = {
-  updateSearchBar(content) {
-    state.navBar.searchBar = content
+  changeTheme() {
+    state.theme = state.theme === 'dark' ? 'light' : 'dark'
   },
 }

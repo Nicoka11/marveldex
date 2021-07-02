@@ -27,8 +27,8 @@ export default Vue.extend({
     const apiKeyPrivate = 'a052f36166cfdc90a7a5fcad9a5d326fae3af923'
     const ts = new Date().getTime()
     const apiHash = md5(`${ts}${apiKeyPrivate}${apiKeyPublic}`)
-    const searchBarRequest = 'b'
-    const api = `http://gateway.marvel.com/v1/public/characters?nameStartsWith=${searchBarRequest}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+    // const searchBarRequest = 'r'
+    const api = `http://gateway.marvel.com/v1/public/characters?&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
     const marvelData = await axios.get(api).then((response) => {
       return response.data.data.results
     })

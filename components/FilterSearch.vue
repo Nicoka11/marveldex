@@ -6,38 +6,48 @@
         <div class="filter-type--name">type :</div>
         <div class="filter-type--content">
           <button
-            class="filter-type--btn filter-type--btn-characters"
-            @click.prevent
+            class="
+              filter-type--btn
+              filter-type--btn-characters
+              filter-type--btn-active
+            "
+            data-type="characters"
+            @click="updateFilterType"
           >
             characters
           </button>
           <button
             class="filter-type--btn filter-type--btn-comics"
-            @click.prevent
+            data-type="comics"
+            @click="updateFilterType"
           >
             comics
           </button>
           <button
             class="filter-type--btn filter-type--btn-creators"
-            @click.prevent
+            data-type="creators"
+            @click="updateFilterType"
           >
             creators
           </button>
           <button
             class="filter-type--btn filter-type--btn-events"
-            @click.prevent
+            data-type="events"
+            @click="updateFilterType"
           >
             events
           </button>
           <button
             class="filter-type--btn filter-type--btn-series"
-            @click.prevent
+            data-type="series"
+            @click="updateFilterType"
           >
             series
           </button>
           <button
             class="filter-type--btn filter-type--btn-stories"
-            @click.prevent
+            data-type="stories"
+            @click="updateFilterType"
           >
             stories
           </button>
@@ -69,7 +79,39 @@
   </div>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'FilterSearch',
+  data() {
+    return {
+      filterType: 'characters',
+    }
+  },
+  computed: {
+    filters() {
+      return this.$store.state.search.navBar.filters
+    },
+  },
+  methods: {
+    updateFilterType(e: any) {
+      e.preventDefault()
+      const newFilter = e.target.dataset.type
+      const filterBtns = document.querySelectorAll('.filter-type--btn')
+      filterBtns.forEach((btn) => {
+        btn.classList.remove('filter-type--btn-active')
+      })
+      e.target.classList.add('filter-type--btn-active')
+      this.filterType = newFilter
+      this.changeFilter(newFilter)
+    },
+    changeFilter(filterType: any) {
+      this.$store.commit('search/setFilterType', filterType)
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .filter-container {
@@ -126,6 +168,7 @@
   }
 
   &--btn {
+    position: relative;
     font-family: 'Source Sans Pro', sans-serif;
     text-transform: uppercase;
     font-size: 1rem;
@@ -135,6 +178,7 @@
     margin: 0 0.3rem 0.6rem 0;
     background: #363636;
     cursor: pointer;
+    transition: all 0.3s ease;
 
     &-characters {
       border-bottom: 3px solid #3bffd0;
@@ -153,6 +197,25 @@
     }
     &-stories {
       border-bottom: 3px solid #ff8126;
+    }
+
+    &:hover {
+      background-color: #464646;
+    }
+    &:active {
+      transform: translateY(2px);
+    }
+
+    &-active {
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border: 2px rgba(255, 255, 255, 0.5) solid;
+      }
     }
   }
 }

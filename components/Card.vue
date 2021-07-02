@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" class="card card-character">
+  <div :key="id" class="card card-character">
     <figure>
       <div class="image-wrapper">
         <img :src="genImageUrl(imagePath, imageExtension)" alt="" />
@@ -12,6 +12,10 @@
 <script lang="ts">
 export default {
   props: {
+    id: {
+      type: String,
+      default: Date.now().toString(),
+    },
     title: {
       type: String,
       default: '',

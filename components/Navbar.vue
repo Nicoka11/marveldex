@@ -44,8 +44,7 @@ export default Vue.extend({
     },
     searchSubmit(e: any) {
       e.preventDefault()
-      const data = this.$store.commit('search/asyncData')
-      this.$store.commit('search/setFetchedData', data)
+      this.$store.dispatch('search/asyncData')
     },
   },
 })

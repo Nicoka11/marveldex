@@ -1,6 +1,10 @@
 <template>
   <div class="results-wrapper">
-    <p class="search-query">Search results for “Flash” (10)</p>
+    <p class="search-query">
+      Search results for “{{ storeSearch.lastSearch }}” ({{
+        storeSearch.data.length
+      }})
+    </p>
     <div class="sorting">
       <p class="sorting-sortby">sort by:</p>
       <select id="sort-setting" name="sort-setting">
@@ -15,7 +19,17 @@
   </div>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  computed: {
+    storeSearch() {
+      return this.$store.state.search
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .search-query {

@@ -6,9 +6,10 @@ export const state = () => ({
     searchInput: 'This is it',
     filters: {
       type: 'characters',
-      minDate: 1950,
+      minDate: 1999,
     },
   },
+  lastSearch: '',
   data: {},
 })
 
@@ -19,8 +20,16 @@ export const mutations = {
   setFilterType(state, filterType) {
     state.navBar.filters.type = filterType
   },
+  setFetchedData(state, newData) {
+    state.data = newData.data
+  },
+  setLastSearch(state, lastSearch) {
+    state.lastSearch = lastSearch.data
+  },
+}
 
-  async asyncData(state) {
+export const actions = {
+  async asyncData({ commit, state }) {
     const apiKeyPublic = 'cabb2e817c239d2a3ba90fe6b8e2d45f'
     const apiKeyPrivate = 'a052f36166cfdc90a7a5fcad9a5d326fae3af923'
     const ts = new Date().getTime()
@@ -36,12 +45,11 @@ export const mutations = {
       const marvelData = await axios.get(api).then((response) => {
         return response.data.data.results
       })
+      commit('setLastSearch', { data: searchInput })
+      commit('setFetchedData', { data: marvelData })
       return marvelData
     } catch (error) {
       throw new Error('Error while connecting to the Marvel API', error)
     }
-  },
-  setFetchedData(state, newData) {
-    state.data = newData
   },
 }

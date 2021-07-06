@@ -30,6 +30,28 @@ export const mutations = {
 
 export const actions = {
   async asyncData({ commit, state }) {
+    const createApiUrl = (type) => {
+      switch (type) {
+        case 'characters':
+          console.log('Character API Url created')
+          break
+        case 'comics':
+          console.log('Comics API Url created')
+          break
+        case 'creators':
+          console.log('Creators API Url created')
+          break
+        case 'events':
+          console.log('Events API Url created')
+          break
+        case 'series':
+          console.log('Series API Url created')
+          break
+        case 'stories':
+          console.log('Stories API Url created')
+          break
+      }
+    }
     const apiKeyPublic = 'cabb2e817c239d2a3ba90fe6b8e2d45f'
     const apiKeyPrivate = 'a052f36166cfdc90a7a5fcad9a5d326fae3af923'
     const ts = new Date().getTime()
@@ -41,6 +63,7 @@ export const actions = {
     }?${
       searchInput ? `nameStartsWith=${searchInput}` : ''
     }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+    createApiUrl(state.navBar.filters.type)
     try {
       const marvelData = await axios.get(api).then((response) => {
         return response.data.data.results

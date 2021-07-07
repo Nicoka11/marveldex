@@ -44,13 +44,6 @@
           >
             series
           </button>
-          <button
-            class="filter-type--btn filter-type--btn-stories"
-            data-type="stories"
-            @click="updateFilterType"
-          >
-            stories
-          </button>
         </div>
         <div class="filter-date--name">date :</div>
         <div class="filter-date--content">
@@ -194,9 +187,6 @@ export default Vue.extend({
     }
     &-series {
       border-bottom: 3px solid #ff5151;
-    }
-    &-stories {
-      border-bottom: 3px solid #ff8126;
     }
 
     &:hover {

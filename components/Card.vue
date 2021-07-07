@@ -54,31 +54,11 @@ export default {
   padding: 1.5rem;
   background: #202020;
   overflow: hidden;
-  border-bottom: 0.8rem solid white;
   cursor: pointer;
-  transition: background 0.5s ease;
+  transition: all 0.5s ease;
 
   &:hover {
-    background: #000000;
-  }
-
-  &-character {
-    border-color: #3bffd0;
-  }
-  &-comics {
-    border-color: #fbff3b;
-  }
-  &-creator {
-    border-color: #b53bff;
-  }
-  &-events {
-    border-color: #573bff;
-  }
-  &-series {
-    border-color: #ff5151;
-  }
-  &-stories {
-    border-color: #ff8126;
+    border: #fff 1px solid;
   }
 }
 .image-wrapper {

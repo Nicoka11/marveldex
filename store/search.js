@@ -10,6 +10,7 @@ export const state = () => ({
     },
   },
   lastSearch: '',
+  sortOption: '',
   data: {},
 })
 
@@ -19,6 +20,9 @@ export const mutations = {
   },
   setFilterType(state, filterType) {
     state.navBar.filters.type = filterType
+  },
+  setSortSetting(state, sortOption) {
+    state.sortOption = sortOption.data
   },
   setFetchedData(state, newData) {
     state.data = newData.data
@@ -30,26 +34,39 @@ export const mutations = {
 
 export const actions = {
   async asyncData({ commit, state }) {
-    const createApiUrl = (type) => {
+    const createApiUrl = (type, state) => {
       switch (type) {
         case 'characters':
-          console.log('Character API Url created')
-          break
+          return `http://gateway.marvel.com/v1/public/${
+            state.navBar.filters.type
+          }?${
+            searchInput ? `nameStartsWith=${searchInput}` : ''
+          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+
         case 'comics':
-          console.log('Comics API Url created')
-          break
+          return `http://gateway.marvel.com/v1/public/${
+            state.navBar.filters.type
+          }?${
+            searchInput ? `titleStartsWith=${searchInput}` : ''
+          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'creators':
-          console.log('Creators API Url created')
-          break
+          return `http://gateway.marvel.com/v1/public/${
+            state.navBar.filters.type
+          }?${
+            searchInput ? `nameStartsWith=${searchInput}` : ''
+          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'events':
-          console.log('Events API Url created')
-          break
+          return `http://gateway.marvel.com/v1/public/${
+            state.navBar.filters.type
+          }?${
+            searchInput ? `nameStartsWith=${searchInput}` : ''
+          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'series':
-          console.log('Series API Url created')
-          break
-        case 'stories':
-          console.log('Stories API Url created')
-          break
+          return `http://gateway.marvel.com/v1/public/${
+            state.navBar.filters.type
+          }?${
+            searchInput ? `titleStartsWith=${searchInput}` : ''
+          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
       }
     }
     const apiKeyPublic = 'cabb2e817c239d2a3ba90fe6b8e2d45f'
@@ -58,12 +75,7 @@ export const actions = {
     const apiHash = md5(`${ts}${apiKeyPrivate}${apiKeyPublic}`)
     const searchInput = state.navBar.searchInput
     const minDate = state.navBar.filters.minDate
-    const api = `http://gateway.marvel.com/v1/public/${
-      state.navBar.filters.type
-    }?${
-      searchInput ? `nameStartsWith=${searchInput}` : ''
-    }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
-    createApiUrl(state.navBar.filters.type)
+    const api = createApiUrl(state.navBar.filters.type, state)
     try {
       const marvelData = await axios.get(api).then((response) => {
         return response.data.data.results

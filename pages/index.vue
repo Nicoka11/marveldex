@@ -6,7 +6,7 @@
       <Card
         v-for="item in marvelData"
         :key="item.id"
-        :title="item.name"
+        :title="item.name || item.title"
         :image-path="item.thumbnail.path"
         :image-extension="item.thumbnail.extension"
       ></Card>

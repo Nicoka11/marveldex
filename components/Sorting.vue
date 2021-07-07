@@ -7,7 +7,7 @@
     </p>
     <div class="sorting">
       <p class="sorting-sortby">sort by:</p>
-      <select id="sort-setting" name="sort-setting">
+      <select id="sort-setting" name="sort-setting" @input="updateSortOption">
         <option value="name-asc">Name &uarr;</option>
         <option value="name-desc">Name &darr;</option>
         <option value="date-asc">Date &uarr;</option>
@@ -26,6 +26,11 @@ export default Vue.extend({
   computed: {
     storeSearch() {
       return this.$store.state.search
+    },
+  },
+  methods: {
+    updateSortOption(e: any) {
+      console.log(e.target.options.selectedIndex)
     },
   },
 })

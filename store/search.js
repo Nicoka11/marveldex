@@ -3,14 +3,13 @@ const md5 = require('md5')
 
 export const state = () => ({
   navBar: {
-    searchInput: 'This is it',
+    searchInput: '',
     filters: {
       type: 'characters',
-      minDate: 1999,
     },
   },
   lastSearch: '',
-  sortOption: '',
+  sortOption: 0,
   data: {},
 })
 
@@ -21,8 +20,11 @@ export const mutations = {
   setFilterType(state, filterType) {
     state.navBar.filters.type = filterType
   },
-  setSortSetting(state, sortOption) {
-    state.sortOption = sortOption.data
+  setMinDate(state, minDate) {
+    state.navBar.filters.minDate = minDate
+  },
+  setSortOption(state, sortOption) {
+    state.sortOption = sortOption
   },
   setFetchedData(state, newData) {
     state.data = newData.data
@@ -41,32 +43,31 @@ export const actions = {
             state.navBar.filters.type
           }?${
             searchInput ? `nameStartsWith=${searchInput}` : ''
-          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
-
+          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'comics':
           return `http://gateway.marvel.com/v1/public/${
             state.navBar.filters.type
           }?${
             searchInput ? `titleStartsWith=${searchInput}` : ''
-          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'creators':
           return `http://gateway.marvel.com/v1/public/${
             state.navBar.filters.type
           }?${
             searchInput ? `nameStartsWith=${searchInput}` : ''
-          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'events':
           return `http://gateway.marvel.com/v1/public/${
             state.navBar.filters.type
           }?${
             searchInput ? `nameStartsWith=${searchInput}` : ''
-          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'series':
           return `http://gateway.marvel.com/v1/public/${
             state.navBar.filters.type
           }?${
             searchInput ? `titleStartsWith=${searchInput}` : ''
-          }&modifiedSince=${minDate}&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
       }
     }
     const apiKeyPublic = 'cabb2e817c239d2a3ba90fe6b8e2d45f'
@@ -74,7 +75,6 @@ export const actions = {
     const ts = new Date().getTime()
     const apiHash = md5(`${ts}${apiKeyPrivate}${apiKeyPublic}`)
     const searchInput = state.navBar.searchInput
-    const minDate = state.navBar.filters.minDate
     const api = createApiUrl(state.navBar.filters.type, state)
     try {
       const marvelData = await axios.get(api).then((response) => {

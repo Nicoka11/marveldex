@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Navbar></Navbar>
-    <Sorting></Sorting>
+    <Sorting class="invisible"></Sorting>
     <div class="grid-list">
       <Card
         v-for="item in marvelData"
@@ -34,6 +34,10 @@ export default Vue.extend({
 </script>
 
 <style>
+.invisible {
+  visibility: hidden;
+}
+
 .body {
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -84,7 +88,7 @@ export default Vue.extend({
     grid-template-columns: repeat(4, auto);
   }
 }
-@media screen and (max-width: 940px) {
+@media screen and (max-width: 1020px) {
   .grid-list {
     grid-template-columns: repeat(3, auto);
   }

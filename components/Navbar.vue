@@ -67,6 +67,7 @@ header {
 }
 .search-bar {
   display: flex;
+  height: 3rem;
 }
 #search-form {
   display: flex;
@@ -113,5 +114,20 @@ header {
   background: #363636;
   justify-self: end;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1020px) {
+  header {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 7rem;
+    margin-bottom: 4rem;
+  }
+
+  .search-bar {
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+  }
 }
 </style>

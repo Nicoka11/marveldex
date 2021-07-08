@@ -12,8 +12,6 @@
         <option value="name-desc">Name &darr;</option>
         <option value="date-asc">Date &uarr;</option>
         <option value="date-desc">Date &darr;</option>
-        <option value="type">Type</option>
-        <option value="creator">Creator</option>
       </select>
     </div>
   </div>
@@ -30,13 +28,16 @@ export default Vue.extend({
   },
   methods: {
     updateSortOption(e: any) {
-      console.log(e.target.options.selectedIndex)
+      this.$store.commit('search/setSortOption', e.target.options.selectedIndex)
     },
   },
 })
 </script>
 
 <style lang="scss" scoped>
+.invisible {
+  visibility: hidden;
+}
 .search-query {
   height: fit-content;
   position: relative;

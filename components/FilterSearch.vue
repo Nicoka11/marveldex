@@ -45,29 +45,7 @@
             series
           </button>
         </div>
-        <div class="filter-date--name">date :</div>
-        <div class="filter-date--content">
-          <input
-            id="date-min"
-            type="number"
-            name="date-min"
-            min="1950"
-            max="2021"
-            step="1"
-            value="1950"
-          />
-          <input
-            id="date-max"
-            type="number"
-            name="date-max"
-            min="1950"
-            max="3000"
-            step="1"
-            value="2021"
-          />
-        </div>
       </form>
-      <button class="apply-btn">apply</button>
     </div>
   </div>
 </template>
@@ -101,6 +79,10 @@ export default Vue.extend({
     },
     changeFilter(filterType: any) {
       this.$store.commit('search/setFilterType', filterType)
+    },
+    updateMinDate(e: any) {
+      e.preventDefault()
+      this.$store.commit('search/setMinDate', e.target.value)
     },
   },
 })
@@ -240,20 +222,6 @@ export default Vue.extend({
   display: none;
 }
 
-.apply-btn {
-  display: none;
-  align-self: flex-end;
-  width: fit-content;
-  font-family: 'Source Sans Pro', sans-serif;
-  text-transform: uppercase;
-  font-size: 1rem;
-  padding: 0.5rem 1.5rem;
-  color: #fff;
-  border: none;
-  margin: 0 0.3rem 0.6rem 0;
-  background: #363636;
-  cursor: pointer;
-}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   display: none;

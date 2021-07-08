@@ -10,7 +10,7 @@ export const state = () => ({
   },
   lastSearch: '',
   sortOption: 0,
-  data: {},
+  data: [],
 })
 
 export const mutations = {
@@ -25,6 +25,7 @@ export const mutations = {
   },
   setSortOption(state, sortOption) {
     state.sortOption = sortOption
+    state.data = state.data.reverse()
   },
   setFetchedData(state, newData) {
     state.data = newData.data
@@ -49,7 +50,7 @@ export const actions = {
             state.navBar.filters.type
           }?${
             searchInput ? `titleStartsWith=${searchInput}` : ''
-          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+          }&limit=100&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'creators':
           return `http://gateway.marvel.com/v1/public/${
             state.navBar.filters.type

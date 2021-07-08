@@ -40,7 +40,7 @@ export default Vue.extend({
   },
   methods: {
     updateSearch(e: any) {
-      this.$store.commit('search/setSearch', e.target.value)
+      this.$store.commit('search/setSearch', e.target.value.toLowerCase())
     },
     searchSubmit(e: any) {
       e.preventDefault()

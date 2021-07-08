@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Navbar></Navbar>
-    <Sorting class="invisible"></Sorting>
+    <Sorting></Sorting>
     <div class="grid-list">
       <Card
         v-for="item in marvelData"

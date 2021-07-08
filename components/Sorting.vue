@@ -1,7 +1,7 @@
 <template>
   <div class="results-wrapper">
     <p class="search-query">
-      Search results for “{{ storeSearch.lastSearch }}” ({{
+      Search results for “{{ storeSearch.lastSearch.toUpperCase() }}” ({{
         storeSearch.data.length
       }})
     </p>
@@ -10,8 +10,6 @@
       <select id="sort-setting" name="sort-setting" @input="updateSortOption">
         <option value="name-asc">Name &uarr;</option>
         <option value="name-desc">Name &darr;</option>
-        <option value="date-asc">Date &uarr;</option>
-        <option value="date-desc">Date &darr;</option>
       </select>
     </div>
   </div>

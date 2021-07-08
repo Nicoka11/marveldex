@@ -73,4 +73,25 @@ export default Vue.extend({
 .links {
   padding-top: 15px;
 }
+
+@media screen and (max-width: 1450px) {
+  .grid-list {
+    grid-template-columns: repeat(5, auto);
+  }
+}
+@media screen and (max-width: 1190px) {
+  .grid-list {
+    grid-template-columns: repeat(4, auto);
+  }
+}
+@media screen and (max-width: 940px) {
+  .grid-list {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+@media screen and (max-width: 650px) {
+  .grid-list {
+    grid-template-columns: repeat(2, auto);
+  }
+}
 </style>

@@ -55,6 +55,7 @@ export default {
   background: #202020;
   overflow: hidden;
   cursor: pointer;
+  border: #202020 1px solid;
   transition: all 0.5s ease;
 
   &:hover {

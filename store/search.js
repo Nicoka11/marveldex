@@ -33,6 +33,7 @@ export const mutations = {
   setLastSearch(state, lastSearch) {
     state.lastSearch = lastSearch.data
   },
+  z,
 }
 
 export const actions = {
@@ -44,7 +45,7 @@ export const actions = {
             state.navBar.filters.type
           }?${
             searchInput ? `nameStartsWith=${searchInput}` : ''
-          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+          }&limit=100&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'comics':
           return `http://gateway.marvel.com/v1/public/${
             state.navBar.filters.type
@@ -56,19 +57,19 @@ export const actions = {
             state.navBar.filters.type
           }?${
             searchInput ? `nameStartsWith=${searchInput}` : ''
-          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+          }&limit=100&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'events':
           return `http://gateway.marvel.com/v1/public/${
             state.navBar.filters.type
           }?${
             searchInput ? `nameStartsWith=${searchInput}` : ''
-          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+          }&limit=100&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
         case 'series':
           return `http://gateway.marvel.com/v1/public/${
             state.navBar.filters.type
           }?${
             searchInput ? `titleStartsWith=${searchInput}` : ''
-          }&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
+          }&limit=100&ts=${ts}&apikey=${apiKeyPublic}&hash=${apiHash}`
       }
     }
     const apiKeyPublic = 'cabb2e817c239d2a3ba90fe6b8e2d45f'

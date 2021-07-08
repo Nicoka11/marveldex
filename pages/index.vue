@@ -6,7 +6,7 @@
       <Card
         v-for="item in marvelData"
         :key="item.id"
-        :title="item.name || item.title"
+        :title="item.name || item.title || item.fullName"
         :image-path="item.thumbnail.path"
         :image-extension="item.thumbnail.extension"
       ></Card>
@@ -52,7 +52,7 @@ export default Vue.extend({
 .grid-list {
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(6, 1fr);
   column-gap: 15px;
   row-gap: 15px;
 }
@@ -80,22 +80,22 @@ export default Vue.extend({
 
 @media screen and (max-width: 1450px) {
   .grid-list {
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 @media screen and (max-width: 1190px) {
   .grid-list {
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 @media screen and (max-width: 1020px) {
   .grid-list {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media screen and (max-width: 650px) {
   .grid-list {
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>

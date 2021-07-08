@@ -2,7 +2,10 @@
   <div :key="id" class="card card-character">
     <figure>
       <div class="image-wrapper">
-        <img :src="genImageUrl(imagePath, imageExtension)" alt="" />
+        <img
+          :src="genImageUrl(imagePath, imageExtension)"
+          :alt="genAltUrl(title)"
+        />
       </div>
       <p class="card-title">{{ title }}</p>
     </figure>
@@ -42,6 +45,9 @@ export default {
   methods: {
     genImageUrl(imgPath: String, imgExtension: String) {
       return `${imgPath}.${imgExtension}`
+    },
+    genAltUrl(name: String) {
+      return `${name} image`
     },
   },
 }

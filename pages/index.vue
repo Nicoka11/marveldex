@@ -11,6 +11,10 @@
         :image-extension="item.thumbnail.extension"
       ></Card>
     </div>
+    <p class="contact">
+      App made by Nicolas Ka :
+      <a href="http://instagram.com/nicoka11" target="_blank">instagram</a>
+    </p>
   </div>
 </template>
 
@@ -33,7 +37,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang="scss">
 .invisible {
   visibility: hidden;
 }
@@ -42,6 +46,7 @@ export default Vue.extend({
   font-family: 'Source Sans Pro', sans-serif;
 }
 .container {
+  position: relative;
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -55,6 +60,7 @@ export default Vue.extend({
   grid-template-columns: repeat(6, 1fr);
   column-gap: 15px;
   row-gap: 15px;
+  margin-bottom: 15px;
 }
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
@@ -96,6 +102,17 @@ export default Vue.extend({
 @media screen and (max-width: 650px) {
   .grid-list {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.contact {
+  color: white;
+  position: relative;
+  margin-top: auto;
+  a {
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
   }
 }
 </style>

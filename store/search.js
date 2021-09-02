@@ -33,7 +33,6 @@ export const mutations = {
   setLastSearch(state, lastSearch) {
     state.lastSearch = lastSearch.data
   },
-  z,
 }
 
 export const actions = {
